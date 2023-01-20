@@ -1,0 +1,7 @@
+sentencepiece
+gensim==4.0.1
+nltk
+numpy
+scipy
+sklearn-crfsuite
+tqdm
