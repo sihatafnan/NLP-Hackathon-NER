@@ -1,5 +1,5 @@
 ##
-fit: train.csv diye
-report: dev diye 
+# fit: train.csv diye
+# report: dev diye 
 
-dev: test split 
+# dev: test split 
