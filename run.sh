@@ -1,0 +1,1 @@
+python anlysis_data.py./

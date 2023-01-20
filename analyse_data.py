@@ -9,5 +9,5 @@ with open(file) as f:
         # split by space
         print(line)
         cnt+=1
-        if cnt ==2:
+        if cnt ==3:
             break
