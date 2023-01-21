@@ -37,7 +37,8 @@ def process_file(file, output_file, small=False):
                 sentence_id += 1
             else:
                 word, tag = line.strip().split(label_splitter)
-                if len(word) > 1:
+                # check if word contains only punctuations
+                if not all(c in punctuations for c in word):
                     word = [w for w in word if w not in punctuations]
                     word = ''.join(word)
                 if log: print("Not new line:", word, tag)
