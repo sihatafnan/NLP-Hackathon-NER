@@ -9,7 +9,7 @@ def get_num_lines(file):
             pass
     return i + 1
 
-def process_file(file, output_file, small=False):
+def process_file(file, output_file, small=False, no_punc=False):
     # file = './data/train.txt'
 
     # csv_strucuture: BERT format
@@ -36,13 +36,14 @@ def process_file(file, output_file, small=False):
                 if log: print("New line")
                 sentence_id += 1
             else:
-                word, tag = line.strip().split(label_splitter)
+                word = line.strip().split(label_splitter)
                 # check if word contains only punctuations
-                # if not all(c in punctuations for c in word):
-                #     word = [w for w in word if w not in punctuations]
-                #     word = ''.join(word)
-                if log: print("Not new line:", word, tag)
-                df = df.append({'sentence_id': sentence_id, 'word': word, 'tag': tag}, ignore_index=True)
+                if no_punc:
+                    if not all(c in punctuations for c in word):
+                        word = [w for w in word if w not in punctuations]
+                        word = ''.join(word)
+                if log: print("Not new line:", word)
+                df = df.append({'sentence_id': sentence_id, 'word': word}, ignore_index=True)
 
             cnt += 1
             if cnt == 1000 and small: break
@@ -57,5 +58,6 @@ def process_file(file, output_file, small=False):
 
     print(df.head(20))
 
-process_file('./data/train.txt', 'train_generic_no_punc', small=False)
-process_file('./data/dev.txt', 'dev_generic_no_punc', small=False)
+process_file('./data/test.txt', 'test_generic', small=False, no_punc=False)
+process_file('./data/test.txt', 'test_generic_no_punc', small=False, no_punc=True)
+# process_file('./data/dev.txt', 'dev_generic_no_punc', small=False)
