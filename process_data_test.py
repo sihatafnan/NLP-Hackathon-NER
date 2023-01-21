@@ -41,7 +41,8 @@ def process_file(file, output_file, small=False, no_punc=False):
                 if no_punc:
                     if not all(c in punctuations for c in word):
                         word = [w for w in word if w not in punctuations]
-                        word = ''.join(word)
+                    
+                word = ''.join(word)
                 if log: print("Not new line:", word)
                 df = df.append({'sentence_id': sentence_id, 'word': word}, ignore_index=True)
 
@@ -63,5 +64,5 @@ process_file('./data/test.txt', 'test_generic_no_punc', small=False, no_punc=Tru
 
 # process_file('./data/dev.txt', 'dev_generic_no_punc', small=False)
 
-# process_file('./data/sample_test_set.txt', 'sample_test_set', small=False, no_punc=False)
-# process_file('./data/sample_test_set.txt', 'sample_test_set_no_punc', small=False, no_punc=True)
+process_file('./data/sample_test_set.txt', 'sample_test_set', small=False, no_punc=False)
+process_file('./data/sample_test_set.txt', 'sample_test_set_no_punc', small=False, no_punc=True)
