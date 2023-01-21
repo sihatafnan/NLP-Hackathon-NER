@@ -15,7 +15,7 @@ def process_file(file, output_file, small=False, no_punc=False):
     # csv_strucuture: BERT format
     # sentence id, word, tag
     # Create a new dataframe with the columns sentence id, word tag
-    df = pd.DataFrame(columns=['sentence_id', 'word', 'tag'])
+    df = pd.DataFrame(columns=['sentence_id', 'word'])
     label_splitter = ' _ _ '
 
     # split ny newline
@@ -60,4 +60,8 @@ def process_file(file, output_file, small=False, no_punc=False):
 
 process_file('./data/test.txt', 'test_generic', small=False, no_punc=False)
 process_file('./data/test.txt', 'test_generic_no_punc', small=False, no_punc=True)
+
 # process_file('./data/dev.txt', 'dev_generic_no_punc', small=False)
+
+# process_file('./data/sample_test_set.txt', 'sample_test_set', small=False, no_punc=False)
+# process_file('./data/sample_test_set.txt', 'sample_test_set_no_punc', small=False, no_punc=True)
