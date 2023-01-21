@@ -1,5 +1,6 @@
 import pandas as pd
 from tqdm import tqdm
+from bnlp.corpus import stopwords, punctuations
 
 # get the number of lines of a file
 def get_num_lines(file):
@@ -36,6 +37,9 @@ def process_file(file, output_file, small=False):
                 sentence_id += 1
             else:
                 word, tag = line.strip().split(label_splitter)
+                if len(word) > 1:
+                    word = [w for w in word if w not in punctuations]
+                    word = ''.join(word)
                 if log: print("Not new line:", word, tag)
                 df = df.append({'sentence_id': sentence_id, 'word': word, 'tag': tag}, ignore_index=True)
 
@@ -52,5 +56,5 @@ def process_file(file, output_file, small=False):
 
     print(df.head(20))
 
-# process_file('./data/train.txt', 'train_generic', small=False)
-process_file('./data/dev.txt', 'dev_generic', small=False)
+process_file('./data/train.txt', 'train_generic_no_punc', small=False)
+process_file('./data/dev.txt', 'dev_generic_no_punc', small=False)
